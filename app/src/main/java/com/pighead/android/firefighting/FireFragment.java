@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import java.text.DateFormat;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,8 +40,9 @@ public class FireFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fire, container, false);
 
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
         mDateButton = (Button) v.findViewById(R.id.stuff_date);
-        mDateButton.setText(mStuff.getDate().toString());
+        mDateButton.setText(dateFormat.format(mStuff.getDate()));
         mDateButton.setEnabled(false);
 
         mCheckBox = (CheckBox) v.findViewById(R.id.stuff_check);
