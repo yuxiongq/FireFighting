@@ -7,5 +7,6 @@
     <string name="stuff_title_label">Title</string>
     <string name="stuff_details_label">Details</string>
     <string name="stuff_checked_label">Checked?</string>
+    <string name="fire_stuff_title">Fire Stuffs</string>
 
 </resources>
