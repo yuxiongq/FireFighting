@@ -20,7 +20,7 @@ import java.text.DateFormat;
  */
 public class FireFragment extends Fragment {
 
-    private FireStuff mStuff;
+    private Fire mStuff;
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mCheckBox;
@@ -32,7 +32,7 @@ public class FireFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mStuff = new FireStuff();
+        mStuff = new Fire();
     }
 
     @Override
