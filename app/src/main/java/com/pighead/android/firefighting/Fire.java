@@ -44,6 +44,10 @@ public class Fire {
 
     private boolean mChecked;
 
+    @Override
+    public String toString() {
+        return mTitle;
+    }
 
     public Fire() {
         this.mId = UUID.randomUUID();

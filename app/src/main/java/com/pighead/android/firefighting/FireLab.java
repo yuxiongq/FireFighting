@@ -17,7 +17,7 @@ public class FireLab {
         mAppContext = appContext;
         mFires = new ArrayList<Fire>();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 30; i++) {
             Fire f = new Fire();
             f.setTitle("Fire #" + i);
             f.setChecked(i%2 == 0); // Every other one
