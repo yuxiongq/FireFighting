@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * Created by Pighead on 1/26/15.
  */
-public class FireStuff {
+public class Fire {
 
     public UUID getId() {
         return mId;
@@ -45,10 +45,8 @@ public class FireStuff {
     private boolean mChecked;
 
 
-    public FireStuff() {
+    public Fire() {
         this.mId = UUID.randomUUID();
         this.mDate = new Date();
     }
-
-
 }
