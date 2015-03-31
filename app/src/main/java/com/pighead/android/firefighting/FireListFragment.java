@@ -1,5 +1,6 @@
 package com.pighead.android.firefighting;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
  * Created by Pighead on 3/25/15.
  */
 public class FireListFragment extends ListFragment {
+    private static final int REQUEST_FIRE = 1;
 
     private ArrayList<Fire> mFires;
 
@@ -35,9 +37,22 @@ public class FireListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         Fire f = ((FireAdapter) getListAdapter()).getItem(position);
 
-        Intent i = new Intent(getActivity(), FireActivity.class);
+//        Intent i = new Intent(getActivity(), FireActivity.class);
+        Intent i = new Intent(getActivity(), FirePagerActivity.class);
         i.putExtra(FireFragment.EXTRA_FIRE_ID, f.getId());
-        startActivity(i);
+//        startActivity(i);
+        startActivityForResult(i, REQUEST_FIRE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_FIRE) {
+
+        }
+    }
+
+    public void returnResult() {
+        getActivity().setResult(Activity.RESULT_OK, null);
     }
 
     private class FireAdapter extends ArrayAdapter<Fire> {
@@ -62,5 +77,11 @@ public class FireListFragment extends ListFragment {
 
             return convertView;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((FireAdapter) getListAdapter()).notifyDataSetChanged();
     }
 }
