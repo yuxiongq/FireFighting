@@ -33,10 +33,21 @@ public class FireFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static FireFragment newInstance(UUID fireID) {
+        Bundle args = new Bundle();
+        args.putSerializable(EXTRA_FIRE_ID, fireID);
+
+        FireFragment fragment = new FireFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID fireID = (UUID) getActivity().getIntent().getSerializableExtra(EXTRA_FIRE_ID);
+//        UUID fireID = (UUID) getActivity().getIntent().getSerializableExtra(EXTRA_FIRE_ID);
+        UUID fireID = (UUID) getArguments().getSerializable(EXTRA_FIRE_ID);
         mStuff = FireLab.get(getActivity()).getFire(fireID);
     }
 
