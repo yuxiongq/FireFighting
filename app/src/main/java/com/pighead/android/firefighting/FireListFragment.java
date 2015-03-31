@@ -1,9 +1,9 @@
 package com.pighead.android.firefighting;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -34,7 +34,10 @@ public class FireListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Fire f = ((FireAdapter) getListAdapter()).getItem(position);
-        Log.d(TAG, f.getTitle() + "was tapped.");
+
+        Intent i = new Intent(getActivity(), FireActivity.class);
+        i.putExtra(FireFragment.EXTRA_FIRE_ID, f.getId());
+        startActivity(i);
     }
 
     private class FireAdapter extends ArrayAdapter<Fire> {

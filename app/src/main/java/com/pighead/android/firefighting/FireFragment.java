@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.text.DateFormat;
+import java.util.UUID;
 
 
 /**
@@ -25,6 +26,9 @@ public class FireFragment extends Fragment {
     private Button mDateButton;
     private CheckBox mCheckBox;
 
+    public static final String EXTRA_FIRE_ID =
+            "com.pighead.android.firefighting.fire_id";
+
     public FireFragment() {
         // Required empty public constructor
     }
@@ -32,7 +36,8 @@ public class FireFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mStuff = new Fire();
+        UUID fireID = (UUID) getActivity().getIntent().getSerializableExtra(EXTRA_FIRE_ID);
+        mStuff = FireLab.get(getActivity()).getFire(fireID);
     }
 
     @Override
@@ -46,6 +51,7 @@ public class FireFragment extends Fragment {
         mDateButton.setEnabled(false);
 
         mCheckBox = (CheckBox) v.findViewById(R.id.stuff_check);
+        mCheckBox.setChecked(mStuff.isChecked());
         mCheckBox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mStuff.setChecked(mCheckBox.isChecked());
@@ -53,6 +59,7 @@ public class FireFragment extends Fragment {
         });
 
         mTitleField = (EditText)v.findViewById(R.id.stuff_title);
+        mTitleField.setText(mStuff.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
