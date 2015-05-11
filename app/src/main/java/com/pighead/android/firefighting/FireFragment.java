@@ -3,6 +3,7 @@ package com.pighead.android.firefighting;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class FireFragment extends Fragment {
 
     public static final String EXTRA_FIRE_ID =
             "com.pighead.android.firefighting.fire_id";
+
+    private static final String DIALOG_DATE = "date";
 
     public FireFragment() {
         // Required empty public constructor
@@ -59,8 +62,16 @@ public class FireFragment extends Fragment {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
         mDateButton = (Button) v.findViewById(R.id.stuff_date);
         mDateButton.setText(dateFormat.format(mStuff.getDate()));
-        mDateButton.setEnabled(false);
-
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity()
+                        .getSupportFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment
+                        .newInstance(mStuff.getDate());
+                dialog.show(fm, DIALOG_DATE);
+            }
+        });
         mCheckBox = (CheckBox) v.findViewById(R.id.stuff_check);
         mCheckBox.setChecked(mStuff.isChecked());
         mCheckBox.setOnClickListener(new View.OnClickListener() {
